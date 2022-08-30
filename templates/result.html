@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP方法</title>
+    <style>
+    </style>
+</head>
+<body>
+    <form action = "http://localhost:5000/login" method = "post">
+         <p style="background-color:red; font-family:arial;color:rgb(3, 1, 1);font-size:20px;">您好？请问<span style="color: #62ee62">您有什么问题呢:</span></p>
+         <p><input type = "text" name = "username" /></p>
+         <p><input type = "submit" value = "提交" /></p>
+    </form>
+    <h4>提问:</h4>
+
+    
+    <div id="para">Yesterday I was ACTIVITY with FRIEND who I first met in PLACE</div>
+    <p>{{context.query}}</p>
+    <h4>FAQ回复:</h4>
+    <table border="2">
+      
+        <tr>
+        <td>{{context.q1}}</td>
+        <td>{{context.a1}}</td>
+        <td>{{context.p1}}</td>
+        </tr>
+
+        <tr>
+        <td>{{context.q2}}</td>
+        <td>{{context.a2}}</td>
+        <td>{{context.p2}}</td>
+        </tr>
+
+        <tr>
+        <td>{{context.q3}}</td>
+        <td>{{context.a3}}</td>
+        <td>{{context.p3}}</td>
+        </tr>
+
+        <tr>
+        <td>{{context.q4}}</td>
+        <td>{{context.a4}}</td>
+        <td>{{context.p4}}</td>
+        </tr>
+
+        <tr>
+        <td>{{context.q5}}</td>
+        <td>{{context.a5}}</td>
+        <td>{{context.p5}}</td>
+        </tr>
+    </table>
+    <script>
+        var sensi_str1 = '{{context.sensitive_detect1}}'
+        var sensi_str2 = '{{context.sensitive_detect2}}'
+        var resultPara = "";
+        var words = sensi_str2.split("");
+        
+        for (var i=0;i<words.length;i++)
+        {
+            if(words[i] == "*")
+            {
+                resultPara += ' <span style="color: red">' + sensi_str1[i] + '</span>'
+            }
+            else
+            {
+                resultPara += sensi_str1[i] 
+            }
+           
+        }
+
+        document.getElementById("para").innerHTML = resultPara;
+        
+    </script>
+</body>
+</html>
+
